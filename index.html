@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Locket Gold Unlocker</title>
+</head>
+<body>
+    <h2>Locket Gold Unlocker</h2>
+    <input type="text" id="username" placeholder="Nhập Username">
+    <button onclick="unlock()">Mở khóa</button>
+    <p id="result"></p>
+    <script>
+        async function unlock() {
+            let u = document.getElementById('username').value;
+            let res = await fetch('/api/unlock', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({username: u})
+            });
+            let data = await res.json();
+            document.getElementById('result').innerText = data.message;
+        }
+    </script>
+</body>
+</html>
